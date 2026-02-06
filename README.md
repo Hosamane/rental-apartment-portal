@@ -31,7 +31,7 @@ The project is fully **containerized using Docker** with Angular, Flask, and Pos
 
 ## 📁 Project Structure
 
-RENTAL PROJECT/ \
+rental-apartment-portal \
 │  
 ├── frontend/ \
 │ ├── Dockerfile \
@@ -95,8 +95,8 @@ All services run on the same Docker network.
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/your-username/rental-project.git
-cd rental-project
+git clone https://github.com/Hosamane/rental-apartment-portal.git
+cd rental-apartment-portal
 
 ```
 
