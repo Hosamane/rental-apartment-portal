@@ -31,21 +31,21 @@ The project is fully **containerized using Docker** with Angular, Flask, and Pos
 
 ## 📁 Project Structure
 
-RENTAL PROJECT/
-│
-├── frontend/
-│ ├── Dockerfile
-│ ├── nginx.conf
-│ └── src/
-│
-├── backend/
-│ ├── Dockerfile
-│ ├── app/
-│ ├── run.py
-│ └── requirements.txt
-│
-├── docker-compose.yml
-└── README.md
+RENTAL PROJECT/ \
+│  
+├── frontend/ \
+│ ├── Dockerfile \
+│ ├── nginx.conf \
+│ └── src/ \
+│\
+├── backend/ \
+│ ├── Dockerfile \
+│ ├── app/ \
+│ ├── run.py  \
+│ └── requirements.txt \
+│\
+├── docker-compose.yml \
+└── README.md \
 
 
 
@@ -98,15 +98,16 @@ All services run on the same Docker network.
 git clone https://github.com/your-username/rental-project.git
 cd rental-project
 
+```
 
-
-2️⃣ Build and start containers
+### 2️⃣ Build and start containers
+```bash 
 docker-compose up --build
+```
 
 
 
-
-🌐 Application URLs
+## 🌐 Application URLs
 | Service     | URL                                            |
 | ----------- | ---------------------------------------------- |
 | Frontend    | [http://localhost](http://localhost)           |
@@ -118,21 +119,22 @@ docker-compose up --build
 
 
 
-🗄 Database Access (Optional)
-Role	Email	Password
+## 🗄 Database Access 
+Role	Email	Password \
 Admin	admin@example.com
-	admin123
+	admin123\
 User	user@example.com
 	user123
-📦 Environment Variables
+## 📦 Environment Variables
+``` bash 
 DATABASE_URL=postgresql://postgres:postgres@db:5432/rental_db
 JWT_SECRET_KEY=your-secret-key
-
-🧾 API Overview
-Method	Endpoint	Description
-POST	/api/auth/register	User registration
-POST	/api/auth/login	Login
-GET	/api/user/units	View units
-POST	/api/user/bookings	Create booking
-GET	/api/admin/bookings	View all bookings
+```
+## 🧾 API Overview
+Method	Endpoint	Description \
+POST	/api/auth/register	User registration \
+POST	/api/auth/login	Login \
+GET	/api/user/units	View units \
+POST	/api/user/bookings	Create booking \
+GET	/api/admin/bookings	View all bookings \
 PUT	/api/admin/bookings/{id}	Approve / Reject
