@@ -120,21 +120,25 @@ docker-compose up --build
 
 
 ## 🗄 Database Access 
-Role	Email	Password \
-Admin	admin@example.com
-	admin123\
-User	user@example.com
-	user123
+
+|Role	 |Email           	|Password |
+|------|------------------|---------|
+|Admin |admin@admin.com   |admin123 |
+|User	 |user@example.com  |user123  |
+
+
 ## 📦 Environment Variables
 ``` bash 
 DATABASE_URL=postgresql://postgres:postgres@db:5432/rental_db
 JWT_SECRET_KEY=your-secret-key
 ```
 ## 🧾 API Overview
-Method	Endpoint	Description \
-POST	/api/auth/register	User registration \
-POST	/api/auth/login	Login \
-GET	/api/user/units	View units \
-POST	/api/user/bookings	Create booking \
-GET	/api/admin/bookings	View all bookings \
-PUT	/api/admin/bookings/{id}	Approve / Reject
+
+|Method|	Endpoint	               |Description| 
+|------|---------------------------|-----------|
+|POST	 |/api/auth/register	       |User registration |
+|POST	 |/api/auth/login	           |Login| 
+|GET	 |/api/user/units	           |View units | 
+|POST	 |/api/user/bookings	       |Create booking  |
+|GET	 |/api/admin/bookings	       |View all bookings  
+|PUT	 |/api/admin/bookings/{id}   |Approve / Reject
