@@ -1,0 +1,89 @@
+
+
+<div class="flex h-screen bg-gray-100">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-gray-900 text-gray-100 flex flex-col">
+
+    <!-- LOGO -->
+    <div class="px-6 py-4 text-xl font-bold border-b border-gray-700">
+      🏢 Rental Admin
+    </div>
+
+    <!-- MENU -->
+    <nav class="flex-1 px-2 py-4 space-y-1">
+
+      <a
+        routerLink="/admin/dashboard"
+        routerLinkActive="bg-gray-800"
+        class="flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        <span class="material-icons text-lg">dashboard</span>
+        Dashboard
+      </a>
+
+      <a
+        routerLink="/admin/towers"
+        routerLinkActive="bg-gray-800"
+        class="flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        <span class="material-icons text-lg">apartment</span>
+        Towers
+      </a>
+
+      <a
+        routerLink="/admin/units"
+        routerLinkActive="bg-gray-800"
+        class="flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        <span class="material-icons text-lg">meeting_room</span>
+        Units
+      </a>
+
+      <a
+        routerLink="/admin/bookings"
+        routerLinkActive="bg-gray-800"
+        class="flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        <span class="material-icons text-lg">assignment</span>
+        Bookings
+      </a>
+
+      <a
+        routerLink="/admin/tenants"
+        routerLinkActive="bg-gray-800"
+        class="flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        <span class="material-icons text-lg">groups</span>
+        Tenants
+      </a>
+
+      <a
+        routerLink="/admin/amenities"
+        routerLinkActive="bg-gray-800"
+        class="flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        <span class="material-icons text-lg">analytics</span>
+        Amenities
+      </a>
+
+    </nav>
+
+    <!-- LOGOUT -->
+    <div class="px-4 py-3 border-t border-gray-700">
+      <button
+        (click)="logout()"
+        class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded transition"
+      >
+        🚪 Logout
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="flex-1 overflow-y-auto p-6">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

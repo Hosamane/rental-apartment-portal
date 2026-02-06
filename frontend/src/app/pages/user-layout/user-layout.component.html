@@ -1,0 +1,46 @@
+<div class="p-6 space-y-6">
+
+  <!-- TOP BAR -->
+  <div class="flex justify-between items-center">
+
+    <!-- LINKS -->
+    <div class="flex gap-4 text-blue-600 font-medium">
+      <a
+        routerLink="/user/dashboard"
+        routerLinkActive="font-bold underline text-black"
+      >
+        Dashboard
+      </a>
+
+      <a
+        routerLink="/user/profile"
+        routerLinkActive="font-bold underline text-black"
+      >
+        My Profile
+      </a>
+
+      <a
+        routerLink="/user/bookings"
+        routerLinkActive="font-bold underline text-black"
+      >
+        My Bookings
+      </a>
+    </div>
+
+    <!-- LOGOUT -->
+    <button
+      (click)="logout()"
+      class="bg-red-500 text-white px-4 py-2 rounded-lg
+             hover:bg-red-600 transition font-semibold"
+    >
+      Logout
+    </button>
+
+  </div>
+
+  <hr />
+
+  <!-- CHILD ROUTES -->
+  <router-outlet></router-outlet>
+
+</div>

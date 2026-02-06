@@ -1,0 +1,159 @@
+<!-- <h2>Admin – Booking Approvals</h2>
+
+<div>
+  <button (click)="setFilter('ALL')">All</button>
+  <button (click)="setFilter('PENDING')">Pending</button>
+  <button (click)="setFilter('APPROVED')">Approved</button>
+  <button (click)="setFilter('DECLINED')">Declined</button>
+</div>
+
+<br />
+
+<table border="1" width="100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User ID</th>
+      <th>Unit ID</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let b of bookings()">
+      <td>{{ b.id }}</td>
+      <td>{{ b.user_id }}</td>
+      <td>{{ b.unit_id }}</td>
+      <td>{{ b.status }}</td>
+
+      <td>
+        <button
+          *ngIf="b.status === 'PENDING'"
+          (click)="approve(b.id)">
+          Approve
+        </button>
+
+        <button
+          *ngIf="b.status === 'PENDING'"
+          (click)="decline(b.id)">
+          Decline
+        </button>
+
+        <span *ngIf="b.status !== 'PENDING'">—</span>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+
+
+<div class="p-6">
+
+  <!-- Title -->
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">
+    Booking Approvals
+  </h2>
+
+  <!-- Filter Buttons -->
+  <div class="flex gap-3 mb-6">
+    <button
+      (click)="setFilter('ALL')"
+      class="px-4 py-2 rounded-md text-sm font-medium
+             bg-gray-200 hover:bg-gray-300">
+      All
+    </button>
+
+    <button
+      (click)="setFilter('PENDING')"
+      class="px-4 py-2 rounded-md text-sm font-medium
+             bg-yellow-100 text-yellow-800 hover:bg-yellow-200">
+      Pending
+    </button>
+
+    <button
+      (click)="setFilter('APPROVED')"
+      class="px-4 py-2 rounded-md text-sm font-medium
+             bg-green-100 text-green-800 hover:bg-green-200">
+      Approved
+    </button>
+
+    <button
+      (click)="setFilter('DECLINED')"
+      class="px-4 py-2 rounded-md text-sm font-medium
+             bg-red-100 text-red-800 hover:bg-red-200">
+      Declined
+    </button>
+  </div>
+
+
+
+
+  <!-- Table -->
+  <div class="overflow-x-auto bg-white shadow rounded-lg">
+    <table class="min-w-full border border-gray-200 text-sm">
+
+      <thead class="bg-gray-100 text-gray-700">
+        <tr>
+          <th class="px-4 py-3 text-left border-b">ID</th>
+          <th class="px-4 py-3 text-left border-b">User ID</th>
+          <th class="px-4 py-3 text-left border-b">Unit ID</th>
+          <th class="px-4 py-3 text-left border-b">Status</th>
+          <th class="px-4 py-3 text-left border-b">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let b of bookings()" class="hover:bg-gray-50">
+
+          <td class="px-4 py-3 border-b">{{ b.id }}</td>
+          <td class="px-4 py-3 border-b">{{ b.user_id }}</td>
+          <td class="px-4 py-3 border-b">{{ b.unit_id }}</td>
+
+          <td class="px-4 py-3 border-b">
+            <span
+              class="px-2 py-1 rounded-full text-xs font-semibold"
+              [ngClass]="{
+                'bg-yellow-100 text-yellow-800': b.status === 'PENDING',
+                'bg-green-100 text-green-800': b.status === 'APPROVED',
+                'bg-red-100 text-red-800': b.status === 'DECLINED'
+              }">
+              {{ b.status }}
+            </span>
+          </td>
+
+          <td class="px-4 py-3 border-b">
+            <div class="flex gap-2">
+
+              <button
+                *ngIf="b.status === 'PENDING'"
+                (click)="approve(b.id)"
+                class="px-3 py-1 text-sm rounded-md
+                       bg-green-600 text-white hover:bg-green-700">
+                Approve
+              </button>
+
+              <button
+                *ngIf="b.status === 'PENDING'"
+                (click)="decline(b.id)"
+                class="px-3 py-1 text-sm rounded-md
+                       bg-red-600 text-white hover:bg-red-700">
+                Decline
+              </button>
+
+              <span
+                *ngIf="b.status !== 'PENDING'"
+                class="text-gray-400">
+                —
+              </span>
+
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+</div>

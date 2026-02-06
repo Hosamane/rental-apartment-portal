@@ -1,0 +1,207 @@
+<div class="p-6 max-w-3xl mx-auto space-y-6">
+<p
+    *ngIf="success()"
+    class="text-green-600 font-medium"
+  >
+    {{ success() }}
+  </p>
+
+  <p
+    *ngIf="error()"
+    class="text-red-600 font-medium"
+  >
+    {{ error() }}
+  </p>
+
+  <!-- PAGE TITLE -->
+  <h2 class="text-2xl font-semibold text-gray-800">
+    Tenant Profile
+  </h2>
+
+  <!-- FORM CARD -->
+  <form
+    [formGroup]="profileForm"
+    (ngSubmit)="submit()"
+    class="bg-white shadow-md rounded-lg p-6 space-y-6"
+  >
+    <!-- USER NAME -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Tenant Name
+        </label>
+        
+
+        <p class="w-full px-4 py-2 border rounded-lg
+                 focus:ring-2 focus:ring-blue-500"> 
+    {{ userName() }}</p>
+      </div>
+
+
+    <!-- TENANT TYPE -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">
+        Tenant Type
+      </label>
+      <select
+        formControlName="tenant_type"
+        class="w-full px-4 py-2 border rounded-lg
+               focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="">Select</option>
+        <option value="STUDENT">Student</option>
+        <option value="WORKING">Working</option>
+      </select>
+    </div>
+
+    <!-- DOB -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">
+        Date of Birth
+      </label>
+      <input
+        type="date"
+        formControlName="date_of_birth"
+        class="w-full px-4 py-2 border rounded-lg
+               focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <hr />
+
+    <!-- STUDENT SECTION -->
+    <div
+      *ngIf="profileForm.value.tenant_type === 'STUDENT'"
+      class="space-y-4"
+    >
+      <h3 class="text-lg font-semibold text-gray-700">
+        Student Details
+      </h3>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          College Name
+        </label>
+        <input
+          type="text"
+          formControlName="college_name"
+          class="w-full px-4 py-2 border rounded-lg
+                 focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Department
+        </label>
+        <input
+          type="text"
+          formControlName="department"
+          class="w-full px-4 py-2 border rounded-lg
+                 focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+    </div>
+
+    <!-- WORKING SECTION -->
+    <div
+      *ngIf="profileForm.value.tenant_type === 'WORKING'"
+      class="space-y-4"
+    >
+      <h3 class="text-lg font-semibold text-gray-700">
+        Work Details
+      </h3>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Company Name
+        </label>
+        <input
+          type="text"
+          formControlName="company_name"
+          class="w-full px-4 py-2 border rounded-lg
+                 focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Designation
+        </label>
+        <input
+          type="text"
+          formControlName="designation"
+          class="w-full px-4 py-2 border rounded-lg
+                 focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- ID PROOF -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          ID Proof Type
+        </label>
+        <select
+          formControlName="id_proof_type"
+          class="w-full px-4 py-2 border rounded-lg
+                 focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="">Select</option>
+          <option value="AADHAR">Aadhar</option>
+          <option value="PAN">PAN</option>
+          <option value="PASSPORT">Passport</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          ID Proof Number
+        </label>
+        <input
+          type="text"
+          formControlName="id_proof_number"
+          class="w-full px-4 py-2 border rounded-lg
+                 focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+    </div>
+
+    <!-- ACTION BUTTON -->
+    <div class="pt-4">
+      <div class="flex gap-3 pt-4">
+
+  <!-- EDIT BUTTON -->
+  <button
+    *ngIf="readonlyMode()"
+    type="button"
+    (click)="enableEdit()"
+    class="px-6 py-2 rounded-lg bg-blue-600 text-white
+           hover:bg-blue-700 transition"
+  >
+    Edit Profile
+  </button>
+
+  <!-- SAVE BUTTON -->
+  <button
+    *ngIf="!readonlyMode()"
+    type="submit"
+    [disabled]="loading()"
+    class="px-6 py-2 rounded-lg bg-green-600 text-white
+           hover:bg-green-700 transition
+           disabled:bg-gray-400 disabled:cursor-not-allowed"
+  >
+    {{ loading() ? 'Saving...' : 'Save Changes' }}
+  </button>
+
+          </div>
+
+            </div>
+
+  </form>
+
+</div>

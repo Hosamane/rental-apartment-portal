@@ -1,0 +1,223 @@
+<!-- <h2>Admin – Tenant Management</h2>
+
+<form [formGroup]="filterForm" (ngSubmit)="loadTenants()">
+  <select formControlName="type">
+    <option value="all">All</option>
+    <option value="current">Current</option>
+    <option value="previous">Previous</option>
+  </select>
+
+  <input type="number" placeholder="Tower ID" formControlName="tower_id" />
+  <input type="number" placeholder="Unit ID" formControlName="unit_id" />
+
+  <select formControlName="tenant_type">
+    <option value="">All Types</option>
+    <option value="STUDENT">Student</option>
+    <option value="WORKING">Working</option>
+  </select>
+
+  <input
+    type="number"
+    placeholder="Lease ending in days"
+    formControlName="lease_ending_days"
+  />
+
+  <button type="submit">Apply</button>
+  <button type="button" (click)="reset()">Reset</button>
+</form>
+
+<hr />
+
+<table border="1" width="100%">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Tenant Type</th>
+      <th>Tower</th>
+      <th>Unit</th>
+      <th>Lease Start</th>
+      <th>Lease End</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let t of tenants()">
+      <td>{{ t.name }}</td>
+      <td>{{ t.email }}</td>
+      <td>{{ t.tenant_type || '-' }}</td>
+      <td>{{ t.tower }}</td>
+      <td>{{ t.unit }}</td>
+      <td>{{ t.lease_start || '-' }}</td>
+      <td>{{ t.lease_end || '-' }}</td>
+      <td>
+        <span *ngIf="t.current">Current</span>
+        <span *ngIf="!t.current">Previous</span>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+
+<div class="space-y-6">
+
+  <!-- PAGE TITLE -->
+  <h2 class="text-2xl font-semibold text-gray-800">
+    Tenant Management
+  </h2>
+
+  <!-- FILTER CARD -->
+  <div class="bg-white p-6 rounded-lg shadow-md">
+
+    <form
+      [formGroup]="filterForm"
+      (ngSubmit)="loadTenants()"
+      class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4"
+    >
+
+      <!-- TYPE -->
+      <select
+        formControlName="type"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="all">All Tenants</option>
+        <option value="current">Current Tenants</option>
+        <option value="previous">Previous Tenants</option>
+      </select>
+
+      <!-- TOWER -->
+      <!-- <input
+        type="number"
+        placeholder="Tower ID"
+        formControlName="tower_id"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+      /> -->
+<select
+  formControlName="tower_id"
+  (change)="onTowerChange($any($event.target).value)"
+  class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+>
+  <option [ngValue]="null">All Towers</option>
+  <option *ngFor="let tower of towers()" [ngValue]="tower.id">
+    {{ tower.name }}
+  </option>
+</select>
+
+      <!-- UNIT -->
+      <!-- <input
+        type="number"
+        placeholder="Unit ID"
+        formControlName="unit_id"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+      /> -->
+
+
+      <select
+  formControlName="unit_id"
+  class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+  [disabled]="!units().length"
+>
+  <option [ngValue]="null">All Units</option>
+  <option *ngFor="let u of units()" [ngValue]="u.id">
+    {{ u.unit_number }}
+  </option>
+</select>
+
+
+      <!-- TENANT TYPE -->
+      <select
+        formControlName="tenant_type"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="">All Types</option>
+        <option value="STUDENT">Student</option>
+        <option value="WORKING">Working</option>
+      </select>
+
+      <!-- LEASE ENDING -->
+      <input
+        type="number"
+        placeholder="Lease ending (days)"
+        formControlName="lease_ending_days"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+      />
+
+      <!-- ACTION BUTTONS -->
+      <div class="flex gap-3 col-span-full">
+        <button
+          type="submit"
+          class="bg-blue-600 text-white px-6 py-2 rounded-lg
+                 hover:bg-blue-700 transition"
+        >
+          Apply Filters
+        </button>
+
+        <button
+          type="button"
+          (click)="reset()"
+          class="bg-gray-300 px-6 py-2 rounded-lg
+                 hover:bg-gray-400 transition"
+        >
+          Reset
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <!-- TABLE -->
+  <div class="bg-white rounded-lg shadow-md overflow-x-auto">
+
+    <table class="w-full text-left border-collapse">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-3">Name</th>
+          <th class="px-4 py-3">Email</th>
+          <th class="px-4 py-3">Tenant Type</th>
+          <th class="px-4 py-3">Tower</th>
+          <th class="px-4 py-3">Unit</th>
+          <th class="px-4 py-3">Lease Start</th>
+          <th class="px-4 py-3">Lease End</th>
+          <th class="px-4 py-3 text-center">Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="let t of tenants()"
+          class="border-t hover:bg-gray-50"
+        >
+          <td class="px-4 py-3">{{ t.name }}</td>
+          <td class="px-4 py-3">{{ t.email }}</td>
+          <td class="px-4 py-3">
+            {{ t.tenant_type || '-' }}
+          </td>
+          <td class="px-4 py-3">{{ t.tower }}</td>
+          <td class="px-4 py-3">{{ t.unit }}</td>
+          <td class="px-4 py-3">{{ t.lease_start || '-' }}</td>
+          <td class="px-4 py-3">{{ t.lease_end || '-' }}</td>
+          <td class="px-4 py-3 text-center">
+            <span
+              *ngIf="t.current"
+              class="px-3 py-1 rounded-full text-sm
+                     bg-green-100 text-green-700"
+            >
+              Current
+            </span>
+            <span
+              *ngIf="!t.current"
+              class="px-3 py-1 rounded-full text-sm
+                     bg-gray-200 text-gray-700"
+            >
+              Previous
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

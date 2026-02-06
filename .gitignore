@@ -1,0 +1,19 @@
+# Node / Angular
+node_modules/
+dist/
+.angular/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# Docker
+pgdata/
+
+# Environment
+.env
+
+# OS
+.DS_Store

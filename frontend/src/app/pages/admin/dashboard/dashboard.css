@@ -1,0 +1,46 @@
+.dashboard {
+  padding: 20px;
+}
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.kpi {
+  background: #f4f6f8;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 👈 SIDE BY SIDE */
+  gap: 24px;
+}
+
+.chart-card {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 10px;
+  height: 380px;
+}
+
+.chart-card canvas {
+  max-height: 300px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .charts {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

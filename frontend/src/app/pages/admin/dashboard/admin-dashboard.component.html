@@ -1,0 +1,105 @@
+<!-- <div class="dashboard">
+
+  <div class="kpi-row">
+    <div class="kpi">Total Units: {{ totalUnits() }}</div>
+    <div class="kpi">Occupied: {{ occupiedUnits() }}</div>
+    <div class="kpi">Vacant: {{ vacantUnits() }}</div>
+    <div class="kpi">Occupancy: {{ occupancyPercent() }}%</div>
+  </div>
+
+  <div class="charts">
+
+    
+    <div class="chart-card">
+      <h3>Overall Occupancy</h3>
+      <canvas
+        baseChart
+        type="pie"
+        [data]="pieChartData"
+        [options]="pieChartOptions">
+      </canvas>
+    </div>
+
+    
+    <div class="chart-card">
+      <h3>Occupancy per Tower</h3>
+      <canvas
+        baseChart
+        type="bar"
+        [data]="barChartData"
+        [options]="barChartOptions">
+      </canvas>
+    </div>
+
+  </div>
+
+</div> -->
+
+
+<div class="p-6 space-y-6">
+ <h2 class="text-2xl font-semibold text-gray-800">
+    Dashboard
+  </h2>
+  <!-- KPI ROW -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="bg-white shadow rounded p-4 text-center">
+      <p class="text-gray-500 text-sm">Total Units</p>
+      <p class="text-2xl font-bold">{{ totalUnits() }}</p>
+    </div>
+
+    <div class="bg-white shadow rounded p-4 text-center">
+      <p class="text-gray-500 text-sm">Occupied</p>
+      <p class="text-2xl font-bold text-green-600">{{ occupiedUnits() }}</p>
+    </div>
+
+    <div class="bg-white shadow rounded p-4 text-center">
+      <p class="text-gray-500 text-sm">Vacant</p>
+      <p class="text-2xl font-bold text-red-500">{{ vacantUnits() }}</p>
+    </div>
+
+    <div class="bg-white shadow rounded p-4 text-center">
+      <p class="text-gray-500 text-sm">Occupancy</p>
+      <p class="text-2xl font-bold text-blue-600">
+        {{ occupancyPercent() }}%
+      </p>
+    </div>
+  </div>
+
+  <!-- CHARTS ROW -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+    <!-- PIE CHART -->
+    <div class="bg-white shadow rounded p-4">
+      <h3 class="text-lg font-semibold mb-2 text-center">
+        Overall Occupancy
+      </h3>
+
+      <div class="h-[300px]">
+        <canvas
+          baseChart
+          type="pie"
+          [data]="pieChartData"
+          [options]="pieChartOptions">
+        </canvas>
+      </div>
+    </div>
+
+    <!-- BAR CHART -->
+    <div class="bg-white shadow rounded p-4">
+      <h3 class="text-lg font-semibold mb-2 text-center">
+        Occupancy per Tower
+      </h3>
+
+      <div class="h-[300px]">
+        <canvas
+          baseChart
+          type="bar"
+          [data]="barChartData"
+          [options]="barChartOptions">
+        </canvas>
+      </div>
+    </div>
+
+  </div>
+
+</div>

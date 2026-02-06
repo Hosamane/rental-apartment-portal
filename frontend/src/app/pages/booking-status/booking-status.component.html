@@ -1,0 +1,133 @@
+<div class="p-6 space-y-6">
+
+  <!-- PAGE TITLE -->
+  <h2 class="text-2xl font-semibold text-gray-800">
+    My Bookings
+  </h2>
+
+  <!-- FILTER BUTTONS -->
+  <div class="flex flex-wrap gap-3">
+    <button
+      (click)="filter('ALL')"
+      class="px-4 py-2 rounded-lg bg-gray-200
+             hover:bg-gray-300 transition"
+    >
+      All
+    </button>
+
+    <button
+      (click)="filter('PENDING')"
+      class="px-4 py-2 rounded-lg bg-yellow-100 text-yellow-700
+             hover:bg-yellow-200 transition"
+    >
+      Pending
+    </button>
+
+    <button
+      (click)="filter('APPROVED')"
+      class="px-4 py-2 rounded-lg bg-green-100 text-green-700
+             hover:bg-green-200 transition"
+    >
+      Approved
+    </button>
+
+    <button
+      (click)="filter('DECLINED')"
+      class="px-4 py-2 rounded-lg bg-red-100 text-red-700
+             hover:bg-red-200 transition"
+    >
+      Declined
+    </button>
+  </div>
+
+  <!-- LOADING -->
+  <div
+    *ngIf="loading()"
+    class="text-gray-500"
+  >
+    Loading bookings...
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div
+    *ngIf="!loading() && bookings().length === 0"
+    class="text-gray-500 italic"
+  >
+    No bookings found
+  </div>
+
+  <!-- BOOKINGS LIST -->
+  <!-- <div class="space-y-4">
+
+    <div
+      *ngFor="let b of bookings()"
+      class="bg-white border rounded-lg shadow-sm p-5
+             hover:shadow-md transition"
+    >
+      <div class="flex justify-between items-center mb-2">
+        <p class="text-sm text-gray-500">
+          Booking ID: {{ b.booking_id }}
+        </p>
+
+        <span
+          class="px-3 py-1 rounded-full text-sm font-semibold"
+          [ngClass]="{
+            'bg-green-100 text-green-700': b.status === 'APPROVED',
+            'bg-yellow-100 text-yellow-700': b.status === 'PENDING',
+            'bg-red-100 text-red-700': b.status === 'DECLINED'
+          }"
+        >
+          {{ b.status }}
+        </span>
+      </div>
+
+      <p class="text-gray-700">
+        <b>Unit ID:</b> {{ b.unit_id }}
+      </p>
+    </div>
+
+  </div> -->
+<div
+  *ngFor="let b of bookings()"
+  class="bg-white shadow-md rounded-lg p-4 mb-4 border
+         flex justify-between items-start"
+>
+
+  <!-- LEFT SIDE : BOOKING DETAILS -->
+  <div>
+    <p class="text-sm text-gray-500">
+      Booking ID: {{ b.booking_id }}
+    </p>
+
+    <p class="text-lg font-semibold text-gray-800">
+      {{ b.tower_name }} — Unit {{ b.unit_number }}
+    </p>
+
+    <p class="text-sm text-gray-700">
+      Bedrooms: {{ b.bedrooms }} • Rent: ₹{{ b.rent }}
+    </p>
+
+    <p class="text-sm text-gray-500 mt-1">
+      Lease: {{ b.lease_start || '—' }} → {{ b.lease_end || '—' }}
+    </p>
+  </div>
+
+  <!-- RIGHT SIDE : STATUS -->
+  <div class="ml-6">
+    <span
+      class="px-4 py-1 rounded-full text-sm font-semibold whitespace-nowrap"
+      [ngClass]="{
+        'bg-yellow-100 text-yellow-700': b.status === 'PENDING',
+        'bg-green-100 text-green-700': b.status === 'APPROVED',
+        'bg-red-100 text-red-700': b.status === 'DECLINED'
+      }"
+    >
+      {{ b.status }}
+    </span>
+  </div>
+
+</div>
+
+
+
+</div>
