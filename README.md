@@ -45,7 +45,8 @@ rental-apartment-portal \
 │ └── requirements.txt \
 │\
 ├── docker-compose.yml \
-└── README.md \
+| \
+└── README.md 
 
 
 
