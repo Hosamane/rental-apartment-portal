@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://backend:5000/api'
+  apiUrl: 'rental-apartment-portal-production.up.railway.app'
 };
