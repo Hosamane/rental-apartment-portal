@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'rental-apartment-portal-production.up.railway.app'
+  apiUrl: 'https://rental-apartment-portal-production.up.railway.app'
 };
