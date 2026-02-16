@@ -1,12 +1,8 @@
 import os
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = os.getenv(
-        "DATABASE_URL",
-        "postgresql://postgres:IuRIkluGuhoKCQJFUUlHGDrDqHGOeUmV@postgres.railway.internal:5432/railway"
-    )
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
 
 uri = os.getenv("DATABASE_URL")
 
