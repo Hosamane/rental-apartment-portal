@@ -14,9 +14,8 @@ class Config:
     if uri and uri.startswith("postgres://"):
         uri = uri.replace("postgres://", "postgresql://", 1)
 
-    SQLALCHEMY_DATABASE_URI = uri
+    SECRET_KEY = os.getenv("SECRET_KEY")
+    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-    app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
-
-
